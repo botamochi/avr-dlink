@@ -132,7 +132,7 @@ void dgear_connect()
 
 //--------------------------------------------------
 // データを送信
-// MSBから送信する
+// LSBから送信する
 //--------------------------------------------------
 void dgear_put_frame(dframe dat)
 {
@@ -147,7 +147,7 @@ void dgear_put_frame(dframe dat)
   DM_DELAY_US(DM_HEAD_PULSE_LOW_TIME);
   /* データ送信 */
   for (i = 0; i < 16; i++) {
-    if (dat & (1<<(15-i))) {
+    if (dat & (1<<i)) {
       DM_PIN_SET();
       DM_DELAY_US(DM_LONG_PULSE_HIGH_TIME);
       DM_PIN_CLR();
@@ -206,9 +206,9 @@ DM_EXT_INT()
       DM_TIMER_CLR();
       return;
     }
-    dat = dat << 1;
+    dat = dat >> 1;
     if (time > th) {
-      dat |= 1;
+      dat |= 0x8000;
     }
     if (++cnt >= 16) {
       DM_TIMER_INT_DIS();
@@ -235,4 +235,3 @@ DM_TIMER_TIMEOUT()
   DM_TIMER_INT_DIS();
   dgear_recv_stat = DM_STAT_IDLE;
 }
-
