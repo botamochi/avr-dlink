@@ -120,5 +120,4 @@ void dlink_put_frame(dframe dat)
     }
   }
   DM_IO_SET();
-  DM_DELAY_US(1000);
 }
