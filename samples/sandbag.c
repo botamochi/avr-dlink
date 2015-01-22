@@ -10,7 +10,7 @@
 #include <avr/interrupt.h>
 #include <util/delay.h>
 #include "serial.h"
-#include "dgear.h"
+#include "dlink.h"
 
 //==================================================
 // 送信するフレーム
@@ -28,30 +28,30 @@ int main(void)
   dframe d1, d2;
 
   serial_init(9600);
-  dgear_initialize();
+  dlink_initialize();
   sei();
   while (1) {
-    /* ターミナルからのデータ受信で通信開始 */
+    // ターミナルからのデータ受信で通信開始
     serial_getc();
 
-    /* 最初のフレームを送信 */
-    dgear_connect();
-    dgear_put_frame(FRAME1);
+    // 最初のフレームを送信
+    dlink_connect();
+    dlink_put_frame(FRAME1);
 
-    /* 受信 */
-    while (!dgear_available());
-    d1 = dgear_get_frame();
+    // 受信
+    while (!dlink_available());
+    d1 = dlink_get_frame();
     _delay_ms(2);
 
-    /* 2つめのフレームを送信 */
-    dgear_connect();
-    dgear_put_frame(FRAME2);
+    // 2つめのフレームを送信
+    dlink_connect();
+    dlink_put_frame(FRAME2);
 
-    /* 受信 */
-    while (!dgear_available());
-    d2 = dgear_get_frame();
+    // 受信
+    while (!dlink_available());
+    d2 = dlink_get_frame();
 
-    /* 結果をターミナルに送信 */
+    // 結果をターミナルに送信
     serial_puts("---- receive data ----\r\n");
     serial_puts("1:");
     serial_println(d1, BIN);

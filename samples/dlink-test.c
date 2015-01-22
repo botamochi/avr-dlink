@@ -12,7 +12,7 @@
 #include <avr/interrupt.h>
 #include <util/delay.h>
 #include "serial.h"
-#include "dgear.h"
+#include "dlink.h"
 
 //==================================================
 // main
@@ -23,21 +23,21 @@ int main(void)
   dframe frm;
 
   serial_init(9600);
-  dgear_initialize();
+  dlink_initialize();
   sei();
   while (1) {
-    /* ターミナルから何かしら受信 */
+    // ターミナルから何かしら受信
     serial_getc();
 
-    /* 育成ギアに1フレーム送信 */
-    dgear_connect();
-    dgear_put_frame(0xFC02);
+    // 育成ギアに1フレーム送信
+    dlink_connect();
+    dlink_put_frame(0xFC02);
 
-    /* 受信 */
-    while (!dgear_available());
-    frm = dgear_get_frame();
+    // 受信
+    while (!dlink_available());
+    frm = dlink_get_frame();
 
-    /* 16進数の文字列に変換して送信 */
+    // 16進数の文字列に変換して送信
     sprintf(str, "0x%04X\r\n", frm);
     serial_puts(str);
   }
