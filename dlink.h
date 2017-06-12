@@ -5,6 +5,7 @@
 // dlink.h
 // created: botamochi
 // 2014/12/22 作成
+// 2017/06/12 関数の削除と名称変更
 //
 //--------------------------------------------------
 #ifndef _DIGIMON_DLINK_H_
@@ -18,18 +19,12 @@ typedef unsigned int dframe;
 //==================================================
 
 // 初期化処理
-void   dlink_initialize(void);
+void   dlink_init(void);
 
-// 受信データがあるか
-int    dlink_available(void);
+// フレーム送信
+void   dlink_send_frame(dframe frame);
 
-// データ取得
-dframe dlink_get_frame(void);
-
-// 送信開始信号を送る
-void   dlink_connect(void);
-
-// データ送信
-void   dlink_put_frame(dframe dat);
+// フレーム受信
+dframe dlink_recv_frame(unsigned long timeout);
 
 #endif
