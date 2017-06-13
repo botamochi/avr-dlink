@@ -15,8 +15,8 @@
 #define SERIAL_IO_DDR    DDRB
 #define SERIAL_IO_PORT   PORTB
 #define SERIAL_IO_PIN    PINB
-#define SERIAL_IO_BIT_TX PB3
-#define SERIAL_IO_BIT_RX PB4
+#define SERIAL_IO_BIT_RX PB3
+#define SERIAL_IO_BIT_TX PB4
 
 // serial_printfを使うかどうか
 #define SERIAL_USE_PRINTF 0

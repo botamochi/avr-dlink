@@ -13,6 +13,8 @@
 //
 // [動作確認済みAVR]
 // - atmega328p  @ F_CPU=8000000L, BAUDRATE=9600
+// - attiny2313a @ F_CPU=8000000L, BAUDRATE=9600
+// - attiny13a   @ F_CPU=9600000L, BAUDRATE=9600
 //--------------------------------------------------
 #include <avr/io.h>
 #include "serial.h"

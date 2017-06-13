@@ -40,7 +40,8 @@
 #define SERIAL_IO_SET()  SERIAL_IO_PORT |=  (1 << SERIAL_IO_BIT_TX)
 #define SERIAL_IO_CLR()  SERIAL_IO_PORT &= ~(1 << SERIAL_IO_BIT_TX)
 #define SERIAL_IO_READ() (SERIAL_IO_PIN & (1 << SERIAL_IO_BIT_RX))
-#define SERIAL_PULSE_WIDTH (1000000 / SERIAL_BAUDRATE)
+#define SERIAL_PULSE_ADJUST 5
+#define SERIAL_PULSE_WIDTH ((1000000 / SERIAL_BAUDRATE) - SERIAL_PULSE_ADJUST)
 #endif
 
 //--------------------------------------------------
