@@ -29,7 +29,7 @@ http://botamochi.github.io/articles/analysis.html
 戻り値 : なし  
 説明 : データを送信します。送信には130msほど時間がかかります。
 ### dlink_recv_frame(unsigned long timeout)
-`timeout` : タイムアウト時間（ミリ秒）です。0を指定した場合はタイムアウト無しです。  
+`timeout` : タイムアウト時間（ミリ秒）です。0を指定した場合はタイムアウト無しです。  
 戻り値 : 受信したデータを返します。受信に失敗した場合は0を返します。
 
 ## 設定
